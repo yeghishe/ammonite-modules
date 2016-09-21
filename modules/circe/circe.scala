@@ -1,12 +1,12 @@
 import ammonite.ops._
-load.module(cwd / "versions.scala")
+interp.load.module(cwd / "versions.scala")
 @
 
 Seq(
   "io.circe" %% "circe-core",
   "io.circe" %% "circe-generic",
   "io.circe" %% "circe-parser"
-).map(d => load.ivy(d % Versions.circe))
+).map(d => interp.load.ivy(d % Versions.circe))
 @
 
 import io.circe._

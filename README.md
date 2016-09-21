@@ -21,7 +21,7 @@ Versions file contains all the version. Modules directory has all the modules. T
 To load a module run:
 ```
 import ammonite.ops._
-load.module(cwd / "modules" / "cats" / "cats-core.scala")
+interp.load.module(cwd / "modules" / "cats" / "cats-core.scala")
 ```
 
 or **`loadM("cats" -> "cats-core")`** after you add following to your Ammonite predefs (`~/.ammonite/predef.scala`): 
@@ -29,8 +29,10 @@ or **`loadM("cats" -> "cats-core")`** after you add following to your Ammonite p
 import ammonite.ops._
 
 def loadM(module: (String, String)): Unit =
-  load.module(cwd / "modules" / module._1 / s"${module._2}.scala")
+  interp.load.module(cwd / "modules" / module._1 / s"${module._2}.scala")
 ```
+
+or just run `wget goo.gl/xqgKJb -O ~/.ammonite/predef.sc` to create your predef file with loadM function in it.
 
 ## How to contribute
 
@@ -40,7 +42,7 @@ def loadM(module: (String, String)): Unit =
 
   ```
   import ammonite.ops._
-  load.module(cwd / "versions.scala")
+  interp.load.module(cwd / "versions.scala")
   @
   ```
 * Send pull requests, be it a bug fix, improvement, upgrading a version to the latest or adding more modules. All pull requests are welcome.

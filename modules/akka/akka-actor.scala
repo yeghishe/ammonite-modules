@@ -1,8 +1,8 @@
 import ammonite.ops._
-load.module(cwd / "versions.scala")
+interp.load.module(cwd / "versions.scala")
 @
 
-load.ivy("com.typesafe.akka" %% "akka-actor" % Versions.akka)
+interp.load.ivy("com.typesafe.akka" %% "akka-actor" % Versions.akka)
 @
 
 import scala.concurrent.duration._
