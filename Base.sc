@@ -4,4 +4,6 @@ case object Versions {
   val scalaz = "7.3.0-M4"
   val cats = "0.7.2"
   val rapture = "2.0.0-M7"
+  val spark = "2.0.1"
+  val shapeless = "2.3.2"
 }

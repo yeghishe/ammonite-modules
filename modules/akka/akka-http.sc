@@ -1,5 +1,4 @@
-import ammonite.ops._
-interp.load.module(cwd / "versions.scala")
+interp.load.module(wd / "Base.sc")
 @
 
 Seq(
