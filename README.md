@@ -3,46 +3,39 @@
 ammonite-modules project defines modules you can load in Ammonite Repl. Modules will load all the dependencies needed and do some basic setup.
 See [my blog post](http://yeghishe.github.io/2016/06/05/ammonite-modules.html) for more detailed description of the project.
 
-Versions file contains all the version. Modules directory has all the modules. The idea here is that each project may have different modules and user chooses which module to load. For example:
+`Base.sc` file contains all the version. Modules directory has all the modules. The idea here is that each project may have different modules and user chooses which module to load. For example:
 ```
-├── versions.scala
+├── Base.sc
 ├── modules
-│   ├── akka
-│   │   ├── akka-actor.scala
-│   │   ├── akka-http.scala
-│   │   └── akka-stream.scala
-│   ├── cats
-│   │   ├── cats-core.scala
-│   │   └── cats.scala
-│   ├── circe
-│   │   └── circe.scala
+│   ├── akka
+│   │   ├── akka-actor.sc
+│   │   ├── akka-http.sc
+│   │   └── akka-stream.sc
+│   ├── cats
+│   │   ├── cats-core.sc
+│   │   └── cats.sc
+│   ├── circe
+│   │   └── circe.sc
 ```
 
-To load a module run:
+### To setup up, run:
 ```
-import ammonite.ops._
-interp.load.module(cwd / "modules" / "cats" / "cats-core.scala")
+curl https://raw.githubusercontent.com/yeghishe/ammonite-modules/master/predef.sc > ~/.ammonite/predef.sc
 ```
+Also make sure to set `AMMONITE_MODULES` environment variable to point to the directory where you checked out `ammonite-modules`, that way you can call `loadM` no mather from what directory `amm` was launched.
 
-or **`loadM("cats" -> "cats-core")`** after you add following to your Ammonite predefs (`~/.ammonite/predef.scala`): 
-```
-import ammonite.ops._
+### To load a module, run:
 
-def loadM(module: (String, String)): Unit =
-  interp.load.module(cwd / "modules" / module._1 / s"${module._2}.scala")
-```
-
-or just run `wget goo.gl/xqgKJb -O ~/.ammonite/predef.sc` to create your predef file with loadM function in it.
+`loadM("<PROJECT>" -> "<MODULE>")` (for example, loadM("cats" -> "cats-core")) in `amm` console.
 
 ## How to contribute
 
 * Each now project should have it's sub directory under `modules` folder and at least one scala file in it. See above how modules are named.
-* `Versions` case object in `versions.scala` file should include a public val for the project with latest version.
+* `Versions` case object in `Base.sc` file should include a public val for the project with latest version.
 * Add those three lines to the top of the file:
 
   ```
-  import ammonite.ops._
-  interp.load.module(cwd / "versions.scala")
+  interp.load.module(wd / "Base.sc")
   @
   ```
 * Send pull requests, be it a bug fix, improvement, upgrading a version to the latest or adding more modules. All pull requests are welcome.
