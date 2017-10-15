@@ -1,8 +1,6 @@
 interp.load.module(wd / "Base.sc")
 @
 
-Seq(
-  "com.typesafe.akka" %% "akka-http-core",
-  "com.typesafe.akka" %% "akka-http-experimental",
-  "com.typesafe.akka" %% "akka-http-spray-json-experimental"
-).map(d => interp.load.ivy(d % Versions.akka))
+interp.load.ivy("com.typesafe.akka" %% "akka-http" % Versions.akkaHttp)
+interp.load.ivy("de.heikoseeberger" %% "akka-http-circe" % Versions.akkaHttpCirce)
+@
